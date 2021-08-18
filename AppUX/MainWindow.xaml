@@ -1,0 +1,54 @@
+﻿<Window x:Class="AppUX.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppUX"
+        mc:Ignorable="d"
+        Title="TXT to XLSX Converter" Height="600" Width="1024" MinWidth="800" MinHeight="500" Background="#272727">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="125"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Viewbox Stretch="Uniform" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" HorizontalAlignment="Left" Height="70" Margin="10, 0, 0, 0">
+                <Canvas Height="512" Width="512">
+                    <Path Data="m435.027344 211 60-90h-43.84375c-7.429688-67.960938-64.773438-121-134.183594-121h-31v30c41.195312 0 76 34.804688 76 76v15h-43.027344l60 90h-107.972656v301h241v-232.214844l-68.785156-68.785156zm-61.371094-164.210938c29.0625 18.875 48.34375 51.808594 48.34375 89.210938v15h16.972656l-31.972656 47.957031-31.972656-47.957031h16.972656v-45c0-21.320312-6.414062-41.773438-18.34375-59.210938zm78.34375 215.425782 8.785156 8.785156h-8.785156zm-151 219.785156v-241h121v60h60v181zm0 0" Fill="#606465"/>
+                    <Path Data="m241 68.785156-68.785156-68.785156h-172.214844v300.988281h77.964844c-19.414063 28.988281-46.632813 68.40625-61.527344 90.011719h45.378906c7.429688 67.960938 64.773438 121 134.183594 121h30v-30c-41.355469 0-75-34.09375-75-76v-15h43.027344l-60-90h106.972656zm-102.359375 395.964844c-28.667969-18.945312-47.640625-51.652344-47.640625-88.75v-15h-17.507812c10.035156-14.660156 22.730468-33.289062 31.917968-47.074219l.589844-.882812 31.972656 47.957031h-16.972656v45c0 21.714844 6.5 41.921875 17.640625 58.75zm42.359375-413.535156 8.785156 8.785156h-8.785156zm-151 219.785156v-241h121v60h60v181zm0 0" Fill="#606465"/>
+                </Canvas>
+            </Viewbox>
+            <TextBlock Text="TXT to XLSX Converter" Foreground="White" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="(Beta)" Foreground="#606465" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="370, 5, 0, 0"/>
+            <TextBlock Text="v1.0.0.0" Foreground="White" Margin="0, 0, 10, 0" FontSize="15" HorizontalAlignment="Right"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="1.3*"/>
+            </Grid.ColumnDefinitions>
+            <RichTextBox x:Name="Preview" Focusable="False" Background="#FF303030" Foreground="White" IsReadOnly="True" Margin="10, 0, 0, 0" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0"/>
+            <StackPanel x:Name="DaDplace" Grid.Column="2" AllowDrop="True" Drop="DaDplace_Drop" Background="#FF303030" Margin="0, 0, 10, 0">
+                <Label Content="Drop file here" HorizontalAlignment="Center" FontSize="15" Foreground="White"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <ComboBox Style="{DynamicResource HeaderComboBox}" x:Name="DelimetersComboBox" Height="25" Width="150" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 0, 0" Background="#FF606465" BorderBrush="#FF606465" />
+        </StackPanel>
+        <Button x:Name="Clear" Grid.Row="3" Height="60" Width="60" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Click="Clear_Click" Content="Clear" FontSize="18" Foreground="#272727"/>
+
+        <Button x:Name="Convert" Grid.Row="3" Height="60" Width="60" HorizontalAlignment="Right" Margin="0, 0, 10, 0" Click="Convert_Click">
+            <Viewbox Stretch="Uniform" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="40">
+                <Canvas Height="512" Width="512">
+                    <Path Data="m435.027344 211 60-90h-43.84375c-7.429688-67.960938-64.773438-121-134.183594-121h-31v30c41.195312 0 76 34.804688 76 76v15h-43.027344l60 90h-107.972656v301h241v-232.214844l-68.785156-68.785156zm-61.371094-164.210938c29.0625 18.875 48.34375 51.808594 48.34375 89.210938v15h16.972656l-31.972656 47.957031-31.972656-47.957031h16.972656v-45c0-21.320312-6.414062-41.773438-18.34375-59.210938zm78.34375 215.425782 8.785156 8.785156h-8.785156zm-151 219.785156v-241h121v60h60v181zm0 0" Fill="#272727"/>
+                    <Path Data="m241 68.785156-68.785156-68.785156h-172.214844v300.988281h77.964844c-19.414063 28.988281-46.632813 68.40625-61.527344 90.011719h45.378906c7.429688 67.960938 64.773438 121 134.183594 121h30v-30c-41.355469 0-75-34.09375-75-76v-15h43.027344l-60-90h106.972656zm-102.359375 395.964844c-28.667969-18.945312-47.640625-51.652344-47.640625-88.75v-15h-17.507812c10.035156-14.660156 22.730468-33.289062 31.917968-47.074219l.589844-.882812 31.972656 47.957031h-16.972656v45c0 21.714844 6.5 41.921875 17.640625 58.75zm42.359375-413.535156 8.785156 8.785156h-8.785156zm-151 219.785156v-241h121v60h60v181zm0 0" Fill="#272727"/>
+                </Canvas>
+            </Viewbox>
+        </Button>
+    </Grid>
+</Window>
+<!--#606465-->
+<!--#272727-->
